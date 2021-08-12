@@ -12,6 +12,7 @@ namespace VFSOFT_REPORT_CHANGE
         {
             InitializeComponent();
             M_Frm = this;
+            CheckForIllegalCrossThreadCalls = false;
         }
 
         private void MainForm_Load(object sender, EventArgs e)

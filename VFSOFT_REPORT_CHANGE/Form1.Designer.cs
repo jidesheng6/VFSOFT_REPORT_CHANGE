@@ -41,6 +41,7 @@ namespace VFSOFT_REPORT_CHANGE
             this.FillPepoleKindBox = new System.Windows.Forms.ComboBox();
             this.ItemReverseBox = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.Report_DataView)).BeginInit();
             this.gp1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -100,6 +101,7 @@ namespace VFSOFT_REPORT_CHANGE
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.StartChangeSql);
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.FillPepoleKindBox);
@@ -190,6 +192,15 @@ namespace VFSOFT_REPORT_CHANGE
             this.label1.Text = "计算项：";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // label3
+            // 
+            this.label3.ForeColor = System.Drawing.Color.Red;
+            this.label3.Location = new System.Drawing.Point(14, 71);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(338, 23);
+            this.label3.TabIndex = 6;
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -228,6 +239,7 @@ namespace VFSOFT_REPORT_CHANGE
         private System.Windows.Forms.Button StartChangeSql;
         public System.Windows.Forms.ComboBox FillPepoleKindBox;
         public System.Windows.Forms.ComboBox ItemReverseBox;
+        public System.Windows.Forms.Label label3;
     }
 }
 

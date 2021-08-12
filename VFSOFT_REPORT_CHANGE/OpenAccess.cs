@@ -9,6 +9,7 @@ using System;
 using System.Windows.Forms;
 using System.Data.OleDb;
 using System.Data;
+using System.IO;
 //打开Access数据库
 namespace VFSOFT_REPORT_CHANGE
 {
@@ -16,8 +17,12 @@ namespace VFSOFT_REPORT_CHANGE
     {
         readonly MainForm M_F = MainForm.M_Frm;
         string AccessConnectStr;
+        string DataBase_Name;
+        string Query_Report;
         public static OleDbConnection OLEDB;
         DataTable DTABLE;
+        FileSystemWatcher FSW = new FileSystemWatcher();
+        OleDbDataAdapter OA;
         public OpenAccess()//初始化操作
         {
             M_F.OpenAccessFile.Filter = "Access数据库(*.mdb)|*.mdb";
@@ -49,6 +54,7 @@ namespace VFSOFT_REPORT_CHANGE
                 case DialogResult.OK:
                     M_F.Text = $"当前选择文件为:{M_F.OpenAccessFile.FileName}";
                     AccessConnectStr = $"Provider=Microsoft.ACE.OLEDB.12.0;Data Source={M_F.OpenAccessFile.FileName}";
+                    DataBase_Name = M_F.OpenAccessFile.FileName;
                     return M_F.OpenAccessFile.FileName;
                 case DialogResult.Cancel:
                     AccessConnectStr = string.Empty;
@@ -62,10 +68,12 @@ namespace VFSOFT_REPORT_CHANGE
             {
                 if (GetAccessFullName() != string.Empty)
                 {
-                    string Query_Report = "select reportid,reportname from report_ess";
+                    Query_Report = "select reportid,reportname from report_ess";
                     OLEDB = new OleDbConnection(AccessConnectStr);
                     OLEDB.Open();
-                    OleDbDataAdapter OA = new OleDbDataAdapter(Query_Report,OLEDB);
+                    BindingSource bs = new BindingSource();
+                    bs.DataSource = DTABLE;
+                    OA = new OleDbDataAdapter(Query_Report,OLEDB);
                     DTABLE = new DataTable();
                     OA.Fill(DTABLE);
                     DTABLE.Columns[0].ColumnName = "报表ID";
@@ -73,6 +81,8 @@ namespace VFSOFT_REPORT_CHANGE
                     if (DTABLE.Rows.Count != 0)
                     {
                         M_F.Report_DataView.DataSource = DTABLE;
+                        M_F.label3.Text="";
+                        CatchDataBase();
                     }
                     else
                     {
@@ -102,6 +112,20 @@ namespace VFSOFT_REPORT_CHANGE
 
             }
             
+        }
+        private void CatchDataBase()
+        {
+            if (DataBase_Name != string.Empty)
+            {
+                FSW.Path = Path.GetDirectoryName(DataBase_Name);
+                FSW.Filter = "*.mdb";
+                FSW.EnableRaisingEvents = true;
+                FSW.Changed += (s, e_) =>
+                {
+                    M_F.label3.Text = "检测到数据文件更新，建议重新加载数据库";
+
+                };
+            }
         }
     }
 }

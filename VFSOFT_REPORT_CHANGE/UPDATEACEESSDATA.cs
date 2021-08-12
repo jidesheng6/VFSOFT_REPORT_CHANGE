@@ -45,8 +45,7 @@ namespace VFSOFT_REPORT_CHANGE
                             }
                             else
                             {
-                                MessageBox.Show("报表中没有找到任何数据，请重新加载报表", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                OpenAccess.OLEDB = null;
+                                MessageBox.Show("报表中没有找到任何数据", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
 
 
@@ -61,8 +60,7 @@ namespace VFSOFT_REPORT_CHANGE
                             }
                             else
                             {
-                                MessageBox.Show("报表中没有找到任何数据，请重新加载报表", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                OpenAccess.OLEDB = null;
+                                MessageBox.Show("报表中没有找到任何数据", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
                         }
                         break;
@@ -84,9 +82,10 @@ namespace VFSOFT_REPORT_CHANGE
         {
             // 不修改评测主体 / 没有评测主体的情况
             string RegexStr = @"Kind=.+(?=&vftab;Raid)";//匹配Kind
-            string Temp_ChangeSqlStr = DataCache?.Tables["TempSqlStr"]?.Rows[0][0]?.ToString();//取出第一条数据
-            if (Temp_ChangeSqlStr != null)
+            int RowsNum = DataCache.Tables["TempSqlStr"].Rows.Count;
+            if (RowsNum > 0)
             {
+                string Temp_ChangeSqlStr = DataCache.Tables["TempSqlStr"].Rows[0][0]?.ToString();//取出第一条数据
                 Regex REgexClass = new Regex(RegexStr);
                 MatchCollection MC = REgexClass.Matches(Temp_ChangeSqlStr);
                 string NewUpdateStr = $"update report_detail set content=Replace(content,'{MC[0]}','Kind={ItemKind}') where reportid={ReportID}";
