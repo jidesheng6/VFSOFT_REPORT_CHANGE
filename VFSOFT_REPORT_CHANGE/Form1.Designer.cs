@@ -36,12 +36,13 @@ namespace VFSOFT_REPORT_CHANGE
             this.DataBaseFileLoad = new System.Windows.Forms.Button();
             this.OpenAccessFile = new System.Windows.Forms.OpenFileDialog();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.StartChangeSql = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.FillPepoleKindBox = new System.Windows.Forms.ComboBox();
             this.ItemReverseBox = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.ProcessBar = new System.Windows.Forms.ProgressBar();
             ((System.ComponentModel.ISupportInitialize)(this.Report_DataView)).BeginInit();
             this.gp1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -116,6 +117,15 @@ namespace VFSOFT_REPORT_CHANGE
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "修改区";
             // 
+            // label3
+            // 
+            this.label3.ForeColor = System.Drawing.Color.Red;
+            this.label3.Location = new System.Drawing.Point(14, 71);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(338, 23);
+            this.label3.TabIndex = 6;
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // StartChangeSql
             // 
             this.StartChangeSql.Location = new System.Drawing.Point(358, 71);
@@ -174,6 +184,7 @@ namespace VFSOFT_REPORT_CHANGE
             // 
             this.ItemReverseBox.FormattingEnabled = true;
             this.ItemReverseBox.Items.AddRange(new object[] {
+            "不修改",
             "该人得票数",
             "该人得票率",
             "该人得分",
@@ -192,20 +203,20 @@ namespace VFSOFT_REPORT_CHANGE
             this.label1.Text = "计算项：";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label3
+            // ProcessBar
             // 
-            this.label3.ForeColor = System.Drawing.Color.Red;
-            this.label3.Location = new System.Drawing.Point(14, 71);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(338, 23);
-            this.label3.TabIndex = 6;
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ProcessBar.Location = new System.Drawing.Point(13, 515);
+            this.ProcessBar.Name = "ProcessBar";
+            this.ProcessBar.Size = new System.Drawing.Size(143, 23);
+            this.ProcessBar.TabIndex = 5;
+            this.ProcessBar.Visible = false;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(618, 526);
+            this.ClientSize = new System.Drawing.Size(618, 542);
+            this.Controls.Add(this.ProcessBar);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.gp1);
@@ -216,7 +227,7 @@ namespace VFSOFT_REPORT_CHANGE
             this.MinimizeBox = false;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "我的二次元我的二次元我的二次元我的二次元";
+            this.Text = "VFSOFT-V2.3";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.Report_DataView)).EndInit();
@@ -240,6 +251,7 @@ namespace VFSOFT_REPORT_CHANGE
         public System.Windows.Forms.ComboBox FillPepoleKindBox;
         public System.Windows.Forms.ComboBox ItemReverseBox;
         public System.Windows.Forms.Label label3;
+        public System.Windows.Forms.ProgressBar ProcessBar;
     }
 }
 

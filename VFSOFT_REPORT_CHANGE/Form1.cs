@@ -28,7 +28,7 @@ namespace VFSOFT_REPORT_CHANGE
 
         private void StartChangeSql_Click(object sender, EventArgs e)
         {
-
+            M_Frm.ProcessBar.Value = 0;
             new UPDATEACEESSDATA().StartChange();//执行修改
         }
 

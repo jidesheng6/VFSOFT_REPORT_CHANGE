@@ -40,6 +40,8 @@ namespace VFSOFT_REPORT_CHANGE
             MainForm.M_Frm.FillPepoleKindBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             MainForm.M_Frm.ItemReverseBox.SelectedIndex=0;
             MainForm.M_Frm.FillPepoleKindBox.SelectedIndex = 0;
+            MainForm.M_Frm.ProcessBar.Minimum = 0;
+            MainForm.M_Frm.ProcessBar.Step = 1;
         }
         public string GetAppPath()
         {
